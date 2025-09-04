@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Aluno — Gestão de Disciplinas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">GD</div>
+        <div><h1>Sistema Disc.</h1><small>Portal do Aluno</small></div>
+      </div>
+      <nav class="nav">
+        <a class="active" href="aluno.html">Dashboard</a>
+        <a href="#">Minhas Disciplinas</a>
+        <a href="#">Solicitar Matrícula</a>
+        <a href="#">Histórico</a>
+        <a href="coordenador.html">Área do Coordenador</a>
+        <a href="secretaria.html">Área da Secretaria</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#a1a1aa" d="M21 21l-4.35-4.35"/></svg>
+          <input placeholder="Buscar disciplina, código ou professor">
+        </div>
+        <div class="user">
+          <div style="text-align:right">
+            <div style="font-weight:600">Olá, Michael</div>
+            <div style="font-size:13px;color:var(--muted)">Aluno — ADS 4º</div>
+          </div>
+          <div class="avatar">M</div>
+        </div>
+      </div>
+
+      <section class="grid">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:12px">
+            <div><h2 style="margin:0">Disciplinas Disponíveis</h2><div style="color:var(--muted);font-size:13px">Escolha e solicite matrícula</div></div>
+            <div><button class="btn btn-primary">Solicitações (3)</button></div>
+          </div>
+
+          <div class="cards">
+            <div class="card">
+              <div class="title">Cálculo I</div>
+              <div class="meta">Pré: — • Horário: Seg/Qua 10:00 - 11:40</div>
+              <p style="margin-top:10px;color:var(--muted)">Professor: Dr. Almeida • Vagas: 35</p>
+              <div style="margin-top:14px;display:flex;gap:10px">
+                <button class="btn btn-primary">Solicitar Matrícula</button>
+                <button class="btn btn-outline">Detalhes</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="title">Estrutura de Dados</div>
+              <div class="meta">Pré: Algoritmos • Horário: Ter/Qui 14:00 - 15:40</div>
+              <p style="margin-top:10px;color:var(--muted)">Professor: L. Santos • Vagas: 20</p>
+              <div style="margin-top:14px;display:flex;gap:10px">
+                <button class="btn btn-primary">Solicitar Matrícula</button>
+                <button class="btn btn-outline">Detalhes</button>
+              </div>
+            </div>
+
+            <!-- mais cards... -->
+          </div>
+
+          <div style="margin-top:18px" class="table-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <div style="font-weight:600">Minhas Solicitações</div>
+              <div style="color:var(--muted);font-size:13px">Últimas atualizações</div>
+            </div>
+
+            <table class="table">
+              <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Banco de Dados</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td>
+                <td class="row-actions"><button class="btn btn-outline">Ver</button></td></tr>
+
+                <tr><td>Inglês Técnico</td><td>28/08/2025</td><td><span style="color:#2ecc71;font-weight:700">Aprovado</span></td>
+                <td class="row-actions"><button class="btn btn-outline">Comprovante</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <aside class="sidebar-panel">
+            <div class="info-box">
+                <div style="font-weight:600;margin-bottom:8px">Contatos</div>
+                <div style="color:var(--muted);font-size:13px">34 9 9090-0969 - Coordenador <br> sevretariaAcademica@gmail.com - Secretaria <br> </div>
+          </div>
+
+          <div class="info-box">
+            <div style="font-weight:600;margin-bottom:8px">Dicas Rápidas</div>
+            <div style="color:var(--muted);font-size:13px">Verifique pré-requisitos antes de solicitar. Horários com conflito são bloqueados automaticamente.</div>
+          </div>
+
+          <div class="info-box">
+            <div style="font-weight:600;margin-bottom:8px">Atalhos</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <a class="btn btn-outline" href="#">Imprimir Histórico</a>
+              <a class="btn btn-outline" href="#">Exportar Matrículas</a>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

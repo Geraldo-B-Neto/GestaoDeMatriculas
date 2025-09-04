@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Coordenador — Gestão de Disciplinas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">GD</div>
+        <div><h1>Sistema Disc.</h1><small>Coordenador</small></div>
+      </div>
+      <nav class="nav">
+        <a href="aluno.html">Dashboard Aluno</a>
+        <a class="active" href="coordenador.html">Solicitações</a>
+        <a href="#">Disciplinas</a>
+        <a href="#">Relatórios</a>
+        <a href="secretaria.html">Secretaria</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="search">
+          <input placeholder="Buscar solicitação, aluno, disciplina">
+        </div>
+        <div class="user">
+          <div style="text-align:right">
+            <div style="font-weight:600">Olá, Coordenador</div>
+            <div style="font-size:13px;color:var(--muted)">Curso: ADS</div>
+          </div>
+          <div class="avatar">C</div>
+        </div>
+      </div>
+
+      <section class="grid">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:12px">
+            <div><h2 style="margin:0">Matrículas Pendentes</h2><div style="color:var(--muted);font-size:13px">Valide requisitos e horários</div></div>
+            <div><button class="btn btn-primary">Exportar CSV</button></div>
+          </div>
+
+          <div class="table-card">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Aluno</th><th>Disciplina</th><th>Pré-requisitos</th><th>Horário</th><th>Status</th><th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>João da Silva</td>
+                  <td>Estrutura de Dados</td>
+                  <td>OK</td>
+                  <td>Ter/Qui 14:00</td>
+                  <td><strong style="color:#f39c12">Pendente</strong></td>
+                  <td class="row-actions">
+                    <button class="btn btn-approve">Aprovar</button>
+                    <button class="btn btn-reject">Rejeitar</button>
+                    <button class="btn btn-outline">Detalhes</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Maria Souza</td>
+                  <td>Banco de Dados</td>
+                  <td>Falta Algoritmos</td>
+                  <td>Seg/Qua 09:00</td>
+                  <td><strong style="color:#ff6b6b">Revisar</strong></td>
+                  <td class="row-actions">
+                    <button class="btn btn-outline">Entrar em Contato</button>
+                    <button class="btn btn-outline">Anexar Documento</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <aside class="sidebar-panel">
+          <div class="info-box">
+            <div style="font-weight:600">Resumo Rápido</div>
+            <div style="margin-top:8px;color:var(--muted)">Pendente: 8 • Aprovado: 120 • Rejeitado: 3</div>
+          </div>
+
+          <div class="info-box">
+            <div style="font-weight:600">Filtros</div>
+            <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+              <select><option>Todos os Cursos</option></select>
+              <select><option>Últimos 30 dias</option></select>
+              <button class="btn btn-outline">Aplicar</button>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <div style="font-weight:600">Ação rápida</div>
+            <div style="margin-top:8px">
+              <button class="btn btn-primary" style="width:100%">Aprovar Tudo (visível)</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
