@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard - Aluno</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .expand{display:none;margin-top:12px}
+    .expand.active{display:block}
+    .expand-toggle{cursor:pointer;color:var(--accent);font-size:14px;font-weight:600;margin-top:6px}
+  </style>
+</head>
+<body>
+<div class="container">
+  <aside class="sidebar">
+    <div class="brand">Portal do Aluno</div>
+    <nav class="nav">
+      <a class="active" href="dashboard.html">Dashboard</a>
+      <a href="conclusao.html">Conclusão de Curso</a>
+      <a href="perfil.html">Perfil</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h2>Dashboard</h2>
+      <div class="user"><span>Michael</span><div class="avatar">M</div></div>
+    </div>
+
+    <!-- Disciplinas -->
+    <div class="card">
+      <h3>Disciplinas Disponíveis</h3>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div class="card" style="flex:1;min-width:240px">
+          <b>Cálculo I</b>
+          <p style="font-size:14px;color:var(--muted)">Seg/Qua 10:00 • Prof. Almeida</p>
+          <button class="btn btn-primary">Solicitar</button>
+        </div>
+        <div class="card" style="flex:1;min-width:240px">
+          <b>Estrutura de Dados</b>
+          <p style="font-size:14px;color:var(--muted)">Ter/Qui 14:00 • Prof. Santos</p>
+          <button class="btn btn-primary">Solicitar</button>
+        </div>
+      </div>
+      <div class="expand-toggle" onclick="toggleExpand('disciplinas')">Ver todas as disciplinas ▼</div>
+      <div class="expand" id="disciplinas">
+        <table class="table">
+          <thead><tr><th>Disciplina</th><th>Pré-requisito</th><th>Horário</th><th>Ação</th></tr></thead>
+          <tbody>
+            <tr><td>Banco de Dados</td><td>Algoritmos</td><td>Seg 14h</td><td><button class="btn btn-outline">Solicitar</button></td></tr>
+            <tr><td>Redes</td><td>—</td><td>Qua 10h</td><td><button class="btn btn-outline">Solicitar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Solicitações -->
+    <div class="card">
+      <h3>Minhas Solicitações</h3>
+      <table class="table">
+        <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Cálculo I</td><td>02/09/2025</td><td style="color:orange">Pendente</td><td><button class="btn btn-outline">Ver</button></td></tr>
+          <tr><td>Inglês Técnico</td><td>28/08/2025</td><td style="color:green">Aprovado</td><td><button class="btn btn-outline">Comprovante</button></td></tr>
+        </tbody>
+      </table>
+      <div class="expand-toggle" onclick="toggleExpand('solicitacoes')">Ver histórico completo ▼</div>
+      <div class="expand" id="solicitacoes">
+        <table class="table">
+          <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
+          <tbody>
+            <tr><td>Banco de Dados</td><td>05/07/2025</td><td>Rejeitado</td>
+              <td><button class="btn btn-outline">Motivo</button></td></tr>
+            <tr><td>Matemática Discreta</td><td>01/07/2025</td><td>Aprovado</td>
+              <td><button class="btn btn-outline">Comprovante</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Extras -->
+    <div class="card"><h3>Contatos</h3><p>Coordenador: 34 9 9090-0969</p><p>Secretaria: secretaria@email.com</p></div>
+    <div class="card"><h3>Dicas Rápidas</h3><p>Verifique pré-requisitos antes de solicitar. Horários em conflito são bloqueados.</p></div>
+    <div class="card"><h3>Atalhos</h3><button class="btn btn-outline">Imprimir Histórico</button> <button class="btn btn-outline">Exportar Matrículas</button></div>
+  </main>
+</div>
+
+<script>
+function toggleExpand(id){
+  document.getElementById(id).classList.toggle('active');
+}
+</script>
+</body>
+</html>

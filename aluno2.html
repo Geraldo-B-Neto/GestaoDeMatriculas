@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Aluno — Gestão de Disciplinas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .expand { display: none; margin-top: 14px; }
+    .expand.active { display: block; }
+    .expand-toggle {
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">GD</div>
+        <div><h1>Sistema Disc.</h1><small>Portal do Aluno</small></div>
+      </div>
+      <nav class="nav">
+        <a class="active" href="aluno.html">Dashboard</a>
+        <a href="conclusao.html">Conclusão de Curso</a>
+        <a href="perfil.html">Perfil</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#a1a1aa" d="M21 21l-4.35-4.35"/></svg>
+          <input placeholder="Buscar disciplina, código ou professor">
+        </div>
+        <div class="user">
+          <div style="text-align:right">
+            <div style="font-weight:600">Olá, Michael</div>
+            <div style="font-size:13px;color:var(--muted)">Aluno — ADS 4º</div>
+          </div>
+          <div class="avatar">M</div>
+        </div>
+      </div>
+
+      <section class="grid">
+        <div>
+          <!-- Disciplinas -->
+          <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:12px">
+            <div>
+              <h2 style="margin:0">Disciplinas Disponíveis</h2>
+              <div style="color:var(--muted);font-size:13px">Escolha e solicite matrícula</div>
+            </div>
+          </div>
+
+          <div class="cards">
+            <div class="card">
+              <div class="title">Cálculo I</div>
+              <div class="meta">Pré: — • Seg/Qua 10:00 - 11:40</div>
+              <p style="margin-top:10px;color:var(--muted)">Prof. Almeida • Vagas: 35</p>
+              <div style="margin-top:14px;display:flex;gap:10px">
+                <button class="btn btn-primary">Solicitar</button>
+                <button class="btn btn-outline">Detalhes</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="title">Estrutura de Dados</div>
+              <div class="meta">Pré: Algoritmos • Ter/Qui 14:00 - 15:40</div>
+              <p style="margin-top:10px;color:var(--muted)">Prof. Santos • Vagas: 20</p>
+              <div style="margin-top:14px;display:flex;gap:10px">
+                <button class="btn btn-primary">Solicitar</button>
+                <button class="btn btn-outline">Detalhes</button>
+              </div>
+            </div>
+          </div>
+
+          <span class="expand-toggle" onclick="toggleExpand('disciplinas')">Ver todas as disciplinas ▼</span>
+          <div class="expand" id="disciplinas">
+            <table class="table">
+              <thead><tr><th>Disciplina</th><th>Pré-requisito</th><th>Horário</th><th>Ação</th></tr></thead>
+              <tbody>
+                <tr><td>Banco de Dados</td><td>Algoritmos</td><td>Seg 14h</td><td><button class="btn btn-outline">Solicitar</button></td></tr>
+                <tr><td>Redes</td><td>—</td><td>Qua 10h</td><td><button class="btn btn-outline">Solicitar</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Solicitações -->
+          <div style="margin-top:18px" class="table-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <div style="font-weight:600">Minhas Solicitações</div>
+              <div style="color:var(--muted);font-size:13px">Últimas atualizações</div>
+            </div>
+            <table class="table">
+              <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Banco de Dados</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Ver</button></td></tr>
+                <tr><td>Inglês Técnico</td><td>28/08/2025</td><td><span style="color:#2ecc71;font-weight:700">Aprovado</span></td><td><button class="btn btn-outline">Comprovante</button></td></tr>
+              </tbody>
+            </table>
+            <span class="expand-toggle" onclick="toggleExpand('solicitacoes')">Ver histórico completo ▼</span>
+            <div class="expand" id="solicitacoes">
+              <table class="table">
+                <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
+                <tbody>
+                  <tr><td>Matemática Discreta</td><td>01/07/2025</td><td>Aprovado</td><td><button class="btn btn-outline">Comprovante</button></td></tr>
+                  <tr><td>Programação I</td><td>15/06/2025</td><td>Rejeitado</td><td><button class="btn btn-outline">Motivo</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna lateral -->
+        <aside class="sidebar-panel">
+          <div class="info-box">
+            <div style="font-weight:600;margin-bottom:8px">Contatos</div>
+            <div style="color:var(--muted);font-size:13px">
+              Coordenador: (34) 99999-0000 <br>
+              Secretaria: secretaria@faculdade.com
+            </div>
+          </div>
+          <div class="info-box">
+            <div style="font-weight:600;margin-bottom:8px">Dicas Rápidas</div>
+            <div style="color:var(--muted);font-size:13px">Verifique pré-requisitos antes de solicitar. Horários com conflito são bloqueados automaticamente.</div>
+          </div>
+          <div class="info-box">
+            <div style="font-weight:600;margin-bottom:8px">Atalhos</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <a class="btn btn-outline" href="#">Imprimir Histórico</a>
+              <a class="btn btn-outline" href="#">Exportar Matrículas</a>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function toggleExpand(id){
+      document.getElementById(id).classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

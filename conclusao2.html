@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Conclusão de Curso</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">GD</div>
+      <div><h1>Sistema Disc.</h1><small>Portal do Aluno</small></div>
+    </div>
+    <nav class="nav">
+      <a href="aluno.html">Dashboard</a>
+      <a class="active" href="conclusao.html">Conclusão de Curso</a>
+      <a href="perfil.html">Perfil</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h2>Conclusão de Curso</h2>
+      <div class="user">
+        <span>Michael</span><div class="avatar">M</div>
+      </div>
+    </div>
+
+    <!-- Resumo -->
+    <div class="card">
+      <h3>Status Geral</h3>
+      <p>Você já concluiu <b>70%</b> dos requisitos para a formatura.</p>
+    </div>
+
+    <!-- Pendências -->
+    <div class="card">
+      <h3>Pendências</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="title">Disciplinas Faltando</div>
+          <p style="color:var(--muted);font-size:14px">2 obrigatórias não concluídas:</p>
+          <ul style="font-size:14px;color:var(--muted);margin-top:6px">
+            <li>Redes de Computadores</li>
+            <li>Segurança da Informação</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="title">Atividades Complementares</div>
+          <p style="color:var(--muted);font-size:14px">Horas exigidas: <b>100h</b><br> Cumpridas: <b>60h</b></p>
+        </div>
+        <div class="card">
+          <div class="title">TCC</div>
+          <p style="color:var(--muted);font-size:14px">Entrega pendente<br>Status: não iniciado</p>
+        </div>
+        <div class="card">
+          <div class="title">Documentos</div>
+          <p style="color:var(--muted);font-size:14px">Pendentes:<br>- RG / CPF digitalizado<br>- Declaração de estágio</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concluídos -->
+    <div class="card">
+      <h3>Requisitos Cumpridos</h3>
+      <ul style="font-size:14px;color:var(--muted);margin-top:6px">
+        <li>✅ Todas as disciplinas básicas concluídas</li>
+        <li>✅ Estágio Supervisionado realizado</li>
+      </ul>
+    </div>
+
+    <!-- Ação -->
+    <div class="card" style="text-align:center">
+      <button class="btn btn-primary" disabled>Solicitar Conclusão (aguardando pendências)</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>
