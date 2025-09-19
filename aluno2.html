@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
@@ -7,38 +7,166 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
+    /* pequenos ajustes locais sem sobrescrever seu css global */
     .expand { display: none; margin-top: 14px; }
     .expand.active { display: block; }
-    .expand-toggle {
-      cursor: pointer;
-      color: var(--accent);
-      font-size: 14px;
-      font-weight: 600;
-      margin-top: 10px;
-      display: inline-block;
+    .expand-toggle { cursor: pointer; color: var(--accent); font-size: 14px; font-weight: 600; margin-top: 10px; display: inline-block; }
+
+    /* grid responsivo mantendo aparência dos seus cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 colunas no desktop */
+      gap: 18px;
+      margin-top: 12px;
     }
+    @media (max-width: 820px){
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+      border: 1px solid rgba(16,24,40,0.03);
+    }
+    .card .title { font-weight:700; font-size:18px; margin-bottom:6px; }
+    .card .meta { color:var(--muted); font-size:13px; }
+
+    .status-badge {
+      display:inline-block;
+      font-size:12px;
+      font-weight:600;
+      padding:6px 10px;
+      border-radius:8px;
+      margin-top:10px;
+    }
+    .status-badge.warning { background:#fff3cd; color:#b58900; }
+    .status-badge.aproved { background:#d1fae5; color:#047857; }
+    .status-badge.unavailable { background:#eef2ff; color:#374151; }
+
+    .btn-disabled { background:#e5e7eb; color:#6b7280; cursor:not-allowed; border: 1px solid rgba(0,0,0,0.04); }
+
+    /* Paginação com bolinhas azuis centralizadas (como seu layout) */
+    .pagination-row {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top: 16px;
+      color:#0ea0ff;
+    }
+    .page-circles { display:flex; gap:10px; align-items:center; justify-content:center; }
+    .page-circle {
+      width:36px; height:36px; border-radius:50%;
+      background:#0ea0ff; color:#fff; display:inline-flex;
+      align-items:center; justify-content:center; font-weight:700; cursor:pointer;
+      box-shadow:0 6px 18px rgba(14,160,255,0.12);
+    }
+    .page-circle.inactive { background: #f1f5f9; color:#0ea0ff; box-shadow:none; cursor:pointer; border:1px solid rgba(14,160,255,0.12); }
+    .page-circle[aria-current="true"] { background:#0ea0ff; color:#fff; }
+
+    /* central small helper styles */
+    .search input { width:100%; padding:14px 16px; border-radius:12px; border:1px solid rgba(16,24,40,0.06); background:#fff; }
+    .search svg { position:relative; left:12px; top:1px; margin-right:8px; }
+
+    /* modal */
+    .modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.45); justify-content:center; align-items:center; }
+    .modal-content { background:#fff; padding:20px; border-radius:8px; max-width:480px; text-align:center; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="logo">GD</div>
-        <div><h1>Sistema Disc.</h1><small>Portal do Aluno</small></div>
-      </div>
-      <nav class="nav">
-        <a class="active" href="aluno.html">Dashboard</a>
-        <a href="conclusao.html">Conclusão de Curso</a>
-        <a href="perfil.html">Perfil</a>
-      </nav>
-    </aside>
+<div class="container">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">GD</div>
+      <div><h1>Sistema Disc.</h1><small>Portal do Aluno</small></div>
+    </div>
+    <nav class="nav">
+      <a class="active" href="aluno.html">Dashboard</a>
+      <a href="conclusao.html">Conclusão de Curso</a>
+      <a href="perfil.html">Perfil</a>
+    </nav>
+  </aside>
 
-    <main class="main">
-      <div class="topbar">
-        <div class="search">
-          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#a1a1aa" d="M21 21l-4.35-4.35"/></svg>
-          <input placeholder="Buscar disciplina, código ou professor">
+  <main class="main">
+    <section class="grid">
+      <div>
+        <!-- Disciplinas -->
+        <div style="margin-bottom:12px">
+          <h2 style="margin:0">Disciplinas</h2>
+          <div style="color:var(--muted);font-size:13px">Escolha e solicite matrícula</div>
+
+          <div style="margin-top: 1rem; display:flex; justify-content:space-between; gap:1rem; align-items:flex-end;">
+
+            <!-- Busca -->
+            <div class="search" style="flex:1;">
+              <svg width="16" height="16" viewBox="0 0 24 24" style="vertical-align:middle"><path fill="#a1a1aa" d="M21 21l-4.35-4.35"/></svg>
+              <input id="searchInput" placeholder="Buscar disciplina, código ou professor">
+            </div>
+
+            <!-- Filtro -->
+            <div style="display:flex; flex-direction:column; align-items:flex-start;">
+              <label style="font-size:12px;color:var(--muted);margin-bottom:2px;">Filtrar por</label>
+              <select id="filterSelect" style="border:none; border-bottom:1px solid #0ea0ff; background:none; outline:none; color:#0ea0ff; font-weight:600;">
+                <option value="disponiveis">Disponíveis</option>
+                <option value="indisponiveis">Indisponíveis</option>
+                <option value="todas">Todas as disciplinas</option>
+              </select>
+            </div>
+          </div>
         </div>
+
+        <!-- Cards dinamicos -->
+        <div id="cardsContainer" class="cards">
+          <!-- preenchido por JS -->
+        </div>
+
+        <!-- Paginação linha (mantendo Voltar / bolinhas / Avançar) -->
+        <div class="pagination-row" style="margin-top: 14px;">
+          <article id="navPrev" class="arowLeft" style="cursor:pointer;">
+            <span style="color: #0ea0ff;">←</span>
+            <small style="color: #0ea0ff; margin-left:6px;">Voltar</small>
+          </article>
+
+          <div class="page-circles" id="pageCircles">
+            <!-- bolinhas geradas pelo JS -->
+          </div>
+
+          <article id="navNext" class="arowRight" style="cursor:pointer;">
+            <small style="color: #0ea0ff; margin-right:6px;">Avançar</small>
+            <span style="color: #0ea0ff;">→</span>
+          </article>
+        </div>
+
+        <!-- Solicitações -->
+        <div style="margin-top:18px" class="table-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div style="font-weight:600">Minhas Solicitações</div>
+            <div style="color:var(--muted);font-size:13px">Últimas atualizações</div>
+          </div>
+          <table class="table">
+            <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Banco de Dados</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Ver</button></td></tr>
+              <tr><td>Inglês Técnico</td><td>28/08/2025</td><td><span style="color:#2ecc71;font-weight:700">Aprovado</span></td><td><button class="btn btn-outline">Comprovante</button></td></tr>
+            </tbody>
+          </table>
+          <span class="expand-toggle" onclick="toggleExpand('solicitacoes')">Ver histórico completo ▼</span>
+          <div class="expand" id="solicitacoes">
+            <table class="table">
+              <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
+              <tbody>
+                <tr><td>Matemática Discreta</td><td>01/07/2025</td><td>Aprovado</td><td><button class="btn btn-outline">Comprovante</button></td></tr>
+                <tr><td>Programação I</td><td>15/06/2025</td><td style="color:red;font-weight:700">Rejeitado</td><td><button class="btn btn-outline" onclick="openModal()">Motivo</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Coluna lateral -->
+      <aside class="sidebar-panel">
         <div class="user">
           <div style="text-align:right">
             <div style="font-weight:600">Olá, Michael</div>
@@ -46,107 +174,192 @@
           </div>
           <div class="avatar">M</div>
         </div>
-      </div>
 
-      <section class="grid">
-        <div>
-          <!-- Disciplinas -->
-          <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:12px">
-            <div>
-              <h2 style="margin:0">Disciplinas Disponíveis</h2>
-              <div style="color:var(--muted);font-size:13px">Escolha e solicite matrícula</div>
-            </div>
-          </div>
-
-          <div class="cards">
-            <div class="card">
-              <div class="title">Cálculo I</div>
-              <div class="meta">Pré: — • Seg/Qua 10:00 - 11:40</div>
-              <p style="margin-top:10px;color:var(--muted)">Prof. Almeida • Vagas: 35</p>
-              <div style="margin-top:14px;display:flex;gap:10px">
-                <button class="btn btn-primary">Solicitar</button>
-                <button class="btn btn-outline">Detalhes</button>
-              </div>
-            </div>
-            <div class="card">
-              <div class="title">Estrutura de Dados</div>
-              <div class="meta">Pré: Algoritmos • Ter/Qui 14:00 - 15:40</div>
-              <p style="margin-top:10px;color:var(--muted)">Prof. Santos • Vagas: 20</p>
-              <div style="margin-top:14px;display:flex;gap:10px">
-                <button class="btn btn-primary">Solicitar</button>
-                <button class="btn btn-outline">Detalhes</button>
-              </div>
-            </div>
-          </div>
-
-          <span class="expand-toggle" onclick="toggleExpand('disciplinas')">Ver todas as disciplinas ▼</span>
-          <div class="expand" id="disciplinas">
-            <table class="table">
-              <thead><tr><th>Disciplina</th><th>Pré-requisito</th><th>Horário</th><th>Ação</th></tr></thead>
-              <tbody>
-                <tr><td>Banco de Dados</td><td>Algoritmos</td><td>Seg 14h</td><td><button class="btn btn-outline">Solicitar</button></td></tr>
-                <tr><td>Redes</td><td>—</td><td>Qua 10h</td><td><button class="btn btn-outline">Solicitar</button></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Solicitações -->
-          <div style="margin-top:18px" class="table-card">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-              <div style="font-weight:600">Minhas Solicitações</div>
-              <div style="color:var(--muted);font-size:13px">Últimas atualizações</div>
-            </div>
-            <table class="table">
-              <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Banco de Dados</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Ver</button></td></tr>
-                <tr><td>Inglês Técnico</td><td>28/08/2025</td><td><span style="color:#2ecc71;font-weight:700">Aprovado</span></td><td><button class="btn btn-outline">Comprovante</button></td></tr>
-              </tbody>
-            </table>
-            <span class="expand-toggle" onclick="toggleExpand('solicitacoes')">Ver histórico completo ▼</span>
-            <div class="expand" id="solicitacoes">
-              <table class="table">
-                <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
-                <tbody>
-                  <tr><td>Matemática Discreta</td><td>01/07/2025</td><td>Aprovado</td><td><button class="btn btn-outline">Comprovante</button></td></tr>
-                  <tr><td>Programação I</td><td>15/06/2025</td><td>Rejeitado</td><td><button class="btn btn-outline">Motivo</button></td></tr>
-                </tbody>
-              </table>
-            </div>
+        <div class="info-box">
+          <div style="font-weight:600;margin-bottom:8px">Contatos</div>
+          <div style="color:var(--muted);font-size:13px">
+            Coordenador: (34) 99999-0000 <br>
+            Secretaria: secretaria@faculdade.com
           </div>
         </div>
+        <div class="info-box">
+          <div style="font-weight:600;margin-bottom:8px">Dicas Rápidas</div>
+          <div style="color:var(--muted);font-size:13px">Verifique pré-requisitos antes de solicitar. Horários com conflito são bloqueados automaticamente.</div>
+        </div>
+        <div class="info-box">
+          <div style="font-weight:600;margin-bottom:8px">Atalhos</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a class="btn btn-outline" href="#">Notificações</a>
+            <a class="btn btn-outline" href="#">Calendário Acadêmico</a>
+            <a class="btn btn-outline" href="#">Perguntas Frequentes (FAQ)</a>
+            <a class="btn btn-outline" href="#">Exportar Histórico Completo</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+</div>
 
-        <!-- Coluna lateral -->
-        <aside class="sidebar-panel">
-          <div class="info-box">
-            <div style="font-weight:600;margin-bottom:8px">Contatos</div>
-            <div style="color:var(--muted);font-size:13px">
-              Coordenador: (34) 99999-0000 <br>
-              Secretaria: secretaria@faculdade.com
-            </div>
-          </div>
-          <div class="info-box">
-            <div style="font-weight:600;margin-bottom:8px">Dicas Rápidas</div>
-            <div style="color:var(--muted);font-size:13px">Verifique pré-requisitos antes de solicitar. Horários com conflito são bloqueados automaticamente.</div>
-          </div>
-          <div class="info-box">
-            <div style="font-weight:600;margin-bottom:8px">Atalhos</div>
-            <div style="display:flex;flex-direction:column;gap:8px">
-              <a class="btn btn-outline" href="#">Notificações</a>
-              <a class="btn btn-outline" href="#">Calendário Acadêmico</a>
-              <a class="btn btn-outline" href="#">Perguntas Frequentes (FAQ)</a>
-              <a class="btn btn-outline" href="#">Exportar Histórico Completo</a>
-            </div>
-          </div>
-        </aside>
-      </section>
-    </main>
+<!-- Modal Motivo -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Motivo da Rejeição</h3>
+    <p>Pré-requisito não cumprido ou conflito de horário.</p>
+    <button class="btn btn-outline" onclick="closeModal()">Fechar</button>
   </div>
+</div>
 
-  <script>
-    function toggleExpand(id){
-      document.getElementById(id).classList.toggle("active");
+<script>
+  // dados de exemplo (substitua pelo backend / fetch quando integrar)
+  const disciplinas = [
+    {titulo:"Cálculo I", pre:"—", horario:"Seg/Qua 10:00 - 11:40", prof:"Almeida", vagas:35, prereq:true, solicitado:false},
+    {titulo:"Estrutura de Dados", pre:"Algoritmos", horario:"Ter/Qui 14:00 - 15:40", prof:"Santos", vagas:20, prereq:false, solicitado:false},
+    {titulo:"Banco de Dados", pre:"Algoritmos", horario:"Qua 10:00 - 11:40", prof:"Silva", vagas:30, prereq:true, solicitado:false},
+    {titulo:"Redes de Computadores", pre:"Fund. Comp.", horario:"Seg/Qua 08:00 - 09:40", prof:"Pereira", vagas:25, prereq:false, solicitado:false},
+    {titulo:"Programação I", pre:"—", horario:"Ter/Qui 10:00 - 11:40", prof:"Oliveira", vagas:40, prereq:true, solicitado:true},
+    {titulo:"Sistemas Operacionais", pre:"Arquitetura", horario:"Sex 14:00 - 17:30", prof:"Souza", vagas:20, prereq:true, solicitado:false},
+    {titulo:"Engenharia de Software", pre:"Programação I", horario:"Qua 14:00 - 15:40", prof:"Carvalho", vagas:15, prereq:true, solicitado:false},
+    {titulo:"Inteligência Artificial", pre:"Estatística", horario:"Seg 14:00 - 15:40", prof:"Mendes", vagas:10, prereq:false, solicitado:false}
+  ];
+
+  const itemsPerPage = 6; // quantidade por página (2 col x 3 linhas)
+  let currentPage = 1;
+  let currentFilter = document.getElementById('filterSelect').value;
+  let currentSearch = "";
+
+  const cardsContainer = document.getElementById('cardsContainer');
+  const pageCircles = document.getElementById('pageCircles');
+  const navPrev = document.getElementById('navPrev');
+  const navNext = document.getElementById('navNext');
+  const searchInput = document.getElementById('searchInput');
+  const filterSelect = document.getElementById('filterSelect');
+
+  // eventos de busca / filtro
+  searchInput.addEventListener('input', (e) => {
+    currentSearch = e.target.value.trim().toLowerCase();
+    currentPage = 1;
+    renderDisciplinas();
+  });
+  filterSelect.addEventListener('change', (e) => {
+    currentFilter = e.target.value;
+    currentPage = 1;
+    renderDisciplinas();
+  });
+
+  navPrev.addEventListener('click', () => {
+    if(currentPage > 1) { currentPage--; renderDisciplinas(); }
+  });
+  navNext.addEventListener('click', () => {
+    const totalPages = Math.ceil(filteredList().length / itemsPerPage);
+    if(currentPage < totalPages) { currentPage++; renderDisciplinas(); }
+  });
+
+  function filteredList(){
+    // aplica filtro (disponiveis = prereq true; indisponiveis = prereq false; todas = all)
+    let list = disciplinas.filter(d => {
+      // filtro por texto
+      const textMatch = `${d.titulo} ${d.prof} ${d.pre}`.toLowerCase().includes(currentSearch);
+      if (!textMatch) return false;
+
+      if(currentFilter === 'disponiveis') return d.prereq === true;
+      if(currentFilter === 'indisponiveis') return d.prereq === false;
+      return true;
+    });
+    return list;
+  }
+
+  function renderDisciplinas(page = currentPage){
+    const list = filteredList();
+    const totalPages = Math.max(1, Math.ceil(list.length / itemsPerPage));
+    if(page > totalPages) page = totalPages;
+    currentPage = page;
+
+    const start = (page - 1) * itemsPerPage;
+    const pageItems = list.slice(start, start + itemsPerPage);
+
+    // limpa
+    cardsContainer.innerHTML = "";
+
+    // renderiza cards
+    pageItems.forEach((d, idx) => {
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.innerHTML = `
+        <div class="title">${d.titulo}</div>
+        <div class="meta">Pré: ${d.pre} • ${d.horario}</div>
+        <p style="margin-top:10px;color:var(--muted)">Prof. ${d.prof} • Vagas: ${d.vagas}</p>
+        ${ d.prereq
+            ? `<span class="status-badge aproved">Pré-requisito cumprido</span>`
+            : `<span class="status-badge warning">Pré-requisito não cumprido</span>`
+        }
+        <div style="margin-top:14px;display:flex;gap:10px">
+          ${ d.solicitado
+              ? `<button class="btn btn-primary btn-disabled" disabled>Solicitado</button>`
+              : (d.prereq
+                  ? `<button class="btn btn-primary" data-title="${escapeHtml(d.titulo)}">Solicitar</button>`
+                  : `<button class="btn btn-primary btn-disabled" disabled title="Pré-requisito não cumprido">Indisponível</button>`
+                )
+          }
+          <button class="btn btn-outline btn-detalhes" data-title="${escapeHtml(d.titulo)}">Detalhes</button>
+        </div>
+      `;
+      cardsContainer.appendChild(el);
+    });
+
+    renderPaginationControls(totalPages);
+    attachCardActions(); // liga evento nos novos botões
+  }
+
+  function renderPaginationControls(totalPages){
+    pageCircles.innerHTML = "";
+    // construir círculos (mostrando todas as páginas; se preferir, podemos limitar e exibir faixa)
+    for(let i=1;i<=totalPages;i++){
+      const span = document.createElement('div');
+      span.className = 'page-circle';
+      if(i !== currentPage) span.classList.add('inactive');
+      span.innerText = i;
+      span.dataset.page = i;
+      span.onclick = () => { currentPage = i; renderDisciplinas(i); };
+      pageCircles.appendChild(span);
     }
-  </script>
+    // ajustar estado prev/next (visual apenas, navegação já ligada)
+    if(currentPage === 1) navPrev.style.opacity = 0.45; else navPrev.style.opacity = 1;
+    if(currentPage === totalPages) navNext.style.opacity = 0.45; else navNext.style.opacity = 1;
+  }
+
+  function attachCardActions(){
+    // Solicitar: atualiza estado local (simula backend) e altera o botão
+    document.querySelectorAll('.card button').forEach(btn => {
+      if(btn.innerText === 'Solicitar'){
+        btn.onclick = (e) => {
+          const title = btn.getAttribute('data-title');
+          // marca como solicitado no array (simulação)
+          const d = disciplinas.find(x => x.titulo === title);
+          if(d){ d.solicitado = true; }
+          // re-renderiza a página atual
+          renderDisciplinas(currentPage);
+        };
+      }
+      // detalhes (pode abrir modal ou navegar)
+      if(btn.classList.contains('btn-detalhes')){
+        btn.onclick = (e) => {
+          const title = btn.getAttribute('data-title');
+          alert('Abrir detalhes de: ' + title); // placeholder: substituir por modal real
+        };
+      }
+    });
+  }
+
+  // util
+  function escapeHtml(s){ return (s||'').replace(/"/g,'&quot;'); }
+
+  // modal
+  function toggleExpand(id){ document.getElementById(id).classList.toggle('active'); }
+  function openModal(){ document.getElementById('modal').style.display = 'flex'; }
+  function closeModal(){ document.getElementById('modal').style.display = 'none'; }
+
+  // initial render
+  renderDisciplinas(1);
+</script>
 </body>
 </html>
