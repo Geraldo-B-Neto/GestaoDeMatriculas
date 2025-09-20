@@ -19,13 +19,13 @@
     }
     .status-badge {
       display:inline-block;
-      font-size:12px;
+      font-size:.9rem;
       font-weight:600;
       padding:2px 6px;
       border-radius:4px;
       margin-top:6px;
     }
-    .status-badge.warning { background:#fff3cd; color:#b58900; }
+    .status-badge.warning { background: #fd9696; color: #9a0101; }
     .status-badge.aproved { background:rgb(118, 244, 118); color:green; }
 
     .btn-disabled {
@@ -98,7 +98,7 @@
         <div style="margin-top: 1.5rem" class="cards">
           <div class="card">
             <div class="title">Cálculo I</div>
-            <div class="meta">Pré: — • Seg/Qua 10:00 - 11:40</div>
+            <div class="meta">Pré: Sem requisitos • Seg/Qua 10:00 - 11:40</div>
             <p style="margin-top:10px;color:var(--muted)">Prof. Almeida • Vagas: 35</p>
             <span class="status-badge aproved">Pré-requisito cumprido</span>
             <div style="margin-top:14px;display:flex;gap:10px">
@@ -107,24 +107,24 @@
             </div>
           </div>
           <div class="card">
-            <div class="title">Estrutura de Dados</div>
+            <div class="title">Estrutura de Dados I</div>
             <div class="meta">Pré: Algoritmos • Ter/Qui 14:00 - 15:40</div>
             <p style="margin-top:10px;color:var(--muted)">Prof. Santos • Vagas: 20</p>
             <span class="status-badge aproved">Pré-requisito cumprido</span>
             <div style="margin-top:14px;display:flex;gap:10px">
-              <button class="btn btn-primary btn-disabled" disabled>Solicitada</button>
+              <button class="btn btn-primary btn-disabled" disabled>Solicitar</button>
               <button class="btn btn-outline">Detalhes</button>
             </div>
           </div>
 
           <div  class="card">
-            <div class="title">Estrutura de Dados II</div>
-            <div class="meta">Pré: Estrutura de Dados Estrutura de Dados
+            <div class="title">Programação Oritentada a Objetos II</div>
+            <div class="meta">Pré: Estrutura de Dados I
               • Ter/Qui 14:00 - 15:40</div>
             <p style="margin-top:10px;color:var(--muted)">Prof. Santos • Vagas: 20</p>
             <span class="status-badge warning">Pré-requisito não cumprido</span>
             <div style="margin-top:14px;display:flex;gap:10px">
-              <button class="btn btn-primary btn-disabled" disabled>Indisponivel</button>
+              <button class="btn btn-primary btn-disabled" disabled>Solicitar</button>
               <button class="btn btn-outline">Detalhes</button>
             </div>
           </div>
@@ -151,26 +151,20 @@
         <!-- Solicitações -->
         <div style="margin-top:18px" class="table-card">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-            <div style="font-weight:600">Minhas Solicitações</div>
-            <div style="color:var(--muted);font-size:13px">Últimas atualizações</div>
+            <div style="font-weight:600">Solicitações Pendentes</div>
+            <div style="color: #0ea0ff;font-weight: 600;font-size:1rem; cursor: pointer">Ver Histórico de Solicitações 🗎</div>
           </div>
           <table class="table">
             <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th></th></tr></thead>
             <tbody>
-            <tr><td>Banco de Dados</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Ver</button></td></tr>
-            <tr><td>Inglês Técnico</td><td>28/08/2025</td><td><span style="color:#2ecc71;font-weight:700">Aprovado</span></td><td><button class="btn btn-outline">Comprovante</button></td></tr>
+            <tr><td>Banco de Dados</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
+            <tr><td>Inglês Técnico</td><td>28/08/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
+            <tr><td>Lógica de Programação II</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
+            <tr><td>Programação Oritentada a Objetos II</td><td>28/08/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
+
             </tbody>
           </table>
-          <span class="expand-toggle" onclick="toggleExpand('solicitacoes')">Ver histórico completo ▼</span>
-          <div class="expand" id="solicitacoes">
-            <table class="table">
-              <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
-              <tbody>
-              <tr><td>Matemática Discreta</td><td>01/07/2025</td><td>Aprovado</td><td><button class="btn btn-outline">Comprovante</button></td></tr>
-              <tr><td>Programação I</td><td>15/06/2025</td><td style="color:red;font-weight:700">Rejeitado</td><td><button class="btn btn-outline" onclick="openModal()">Motivo</button></td></tr>
-              </tbody>
-            </table>
-          </div>
+
         </div>
       </div>
 
@@ -200,8 +194,20 @@
           <div style="display:flex;flex-direction:column;gap:8px">
             <a class="btn btn-outline" href="#">Notificações</a>
             <a class="btn btn-outline" href="#">Calendário Acadêmico</a>
-            <a class="btn btn-outline" href="#">Perguntas Frequentes (FAQ)</a>
             <a class="btn btn-outline" href="#">Exportar Histórico Completo</a>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <div style="font-weight:600;margin-bottom:8px">Peguntas Frequentes (FAQ)</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a class="btn btn-outline" href="#">Como solicitar a Matrícula?</a>
+            <a class="btn btn-outline" href="#">Como contatar alguém responsável?</a>
+            <a class="btn btn-outline" href="#">Como saber os requisitos da matrícula?</a>
+            <a class="btn btn-outline" href="#">Como saber se a solicitação foi aceita ou rejeitada?</a>
+            <a class="btn btn-outline" href="#">Como eu cancelo uma solicitação de matrícula?</a>
+
+
           </div>
         </div>
       </aside>
