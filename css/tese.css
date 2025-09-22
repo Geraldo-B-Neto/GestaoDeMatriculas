@@ -1,3 +1,4 @@
+
 /* style.css - tema moderno inspirado nos exemplos (sidebar colorida + cards) */
 :root{
   --accent: #2ea4ff;
@@ -6,7 +7,7 @@
   --card: #ffffff;
   --muted: #6b7280;
   --radius: 12px;
-  --sidebar-w: 260px;
+  --sidebar-w: 220px;
   --gap: 20px;
   font-family: "Inter", System-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
@@ -75,17 +76,17 @@ a{color:inherit;text-decoration:none}
 /* Layout grid */
 .grid{
   display:grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 3fr 1fr;
   gap:var(--gap);
   align-items:start;
 }
 
 /* Cards area (left) */
 .cards{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px; height: 14rem;
 }
 .card{
-  background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(16,24,40,0.04);
+  background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(16,24,40,0.04); display: flex; flex-direction: column; gap: 1px;
 }
 .card .title{font-weight:600;margin-bottom:8px}
 .card .meta{font-size:13px;color:var(--muted)}
