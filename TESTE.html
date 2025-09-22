@@ -5,7 +5,7 @@
   <title>Aluno — Gestão de Disciplinas</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="css/tese.css">
   <style>
     .expand { display: none; margin-top: 14px; }
     .expand.active { display: block; }
@@ -27,6 +27,7 @@
     }
     .status-badge.warning { background: #fd9696; color: #9a0101; }
     .status-badge.aproved { background:rgb(118, 244, 118); color:green; }
+    .status-badge.blue { background:#7FC5FFFF; color:#0C65A8FF; }
 
     .btn-disabled {
       background:#e5e7eb;
@@ -55,37 +56,12 @@
 </head>
 <body>
 <div class="container">
- <aside class="sidebar">
-  <div class="brand">
-    <div class="logo">GD</div>
-    <div><h1>Sistema Disc.</h1><small>Portal do Aluno</small></div>
-  </div>
-  <nav class="nav">
-    <a class="active" href="aluno.html">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M3 9.75L12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75z"/>
-      </svg>
-      <span>Dashboard</span>
-    </a>
-    <a href="conclusao.html">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 3a9 9 0 1 0 9 9 9.01 9.01 0 0 0-9-9zm0 16a7 7 0 1 1 7-7 7.01 7.01 0 0 1-7 7zm-.75-11.25h1.5v5.25h-1.5zm0 6h1.5v1.5h-1.5z"/>
-      </svg>
-      <span>Conclusão</span>
-    </a>
-    <a href="perfil.html">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 2a5 5 0 1 1-5 5 5 5 0 0 1 5-5zm0 8a7 7 0 0 0-7 7v3h14v-3a7 7 0 0 0-7-7z"/>
-      </svg>
-      <span>Perfil</span>
-    </a>
-  </nav>
-</aside>
 
   <main class="main">
     <section class="grid">
       <div class="containerDisciplinas">
         <!-- Disciplinas -->
+
         <div  style="margin-bottom:12px">
           <h2 style="margin:0">Disciplinas</h2>
           <div style="color:var(--muted);font-size:13px">Escolha e solicite matrícula</div>
@@ -100,13 +76,13 @@
             <!-- Filtro -->
             <div style="display:flex; flex-direction:column; align-items:flex-start;">
               <label style="font-size:12px;color:var(--muted);margin-bottom:2px;">Filtrar por</label>
-              <select style="border:none; border-bottom:1px solid #0ea0ff; background:none; outline:none; color:#0ea0ff; font-weight:600;">
-                
+              <select style="cursor:pointer;border:none; border-bottom:1px solid #0ea0ff; background:none; outline:none; color:#0ea0ff; font-weight:600;">
+
                 <option value="todas">Todas as disciplinas</option>
                 <option value="disponiveis">Disponíveis</option>
                 <option value="indisponiveis">Indisponíveis</option>
                 <option value="solicitados">Solicitadas</option>
-              
+
               </select>
             </div>
           </div>
@@ -118,7 +94,7 @@
             <div class="title">Cálculo I</div>
             <div class="meta">Pré: Sem requisitos • Seg/Qua 10:00 - 11:40</div>
             <p style="margin-top:10px;color:var(--muted)">Prof. Almeida • Vagas: 35</p>
-            <span class="status-badge aproved">Pré-requisito cumprido</span>
+            <span class="status-badge aproved">Pré-requisitos cumpridos</span>
             <div style="margin-top:14px;display:flex;gap:10px">
               <button class="btn btn-primary">Solicitar</button>
               <button class="btn btn-outline">Detalhes</button>
@@ -128,18 +104,18 @@
             <div class="title">Estrutura de Dados I</div>
             <div class="meta">Pré: Algoritmos • Ter/Qui 14:00 - 15:40</div>
             <p style="margin-top:10px;color:var(--muted)">Prof. Santos • Vagas: 20</p>
-            <span class="status-badge aproved">Pré-requisito cumprido</span>
+            <span class="status-badge blue">Pré-requisitos em análise</span>
             <div style="margin-top:14px;display:flex;gap:10px">
               <button class="btn btn-primary btn-disabled" disabled>Solicitar</button>
               <button class="btn btn-outline">Detalhes</button>
             </div>
           </div>
-          
+
           <div class="card solicitada">
             <div class="title">Estrutura de Dados I</div>
             <div class="meta">Pré: Algoritmos • Ter/Qui 14:00 - 15:40</div>
             <p style="margin-top:10px;color:var(--muted)">Prof. Santos • Vagas: 20</p>
-            <span class="status-badge aproved">Pré-requisito cumprido</span>
+            <span class="status-badge blue">Pré-requisitos em análise</span>
             <div style="margin-top:14px;display:flex;gap:10px">
               <button class="btn btn-primary btn-disabled" disabled>Solicitar</button>
               <button class="btn btn-outline">Detalhes</button>
@@ -151,7 +127,7 @@
             <div class="meta">Pré: Estrutura de Dados I
               • Ter/Qui 14:00 - 15:40</div>
             <p style="margin-top:10px;color:var(--muted)">Prof. Santos • Vagas: 20</p>
-            <span class="status-badge warning">Pré-requisito não cumprido</span>
+            <span class="status-badge warning">Pré-requisitos não cumpridos</span>
             <div style="margin-top:14px;display:flex;gap:10px">
               <button class="btn btn-primary btn-disabled" disabled>Solicitar</button>
               <button class="btn btn-outline">Detalhes</button>
@@ -162,7 +138,7 @@
 
         <!-- Paginação -->
         <div class="card_btns" style="display: flex; justify-content: space-between; margin-top: 1rem; color: #0ea0ff;">
-          <article class="arrowLeft arrow" style="display: flex; align-items: center;">
+          <article class="arrowLeft arrow" style="cursor:pointer; display: flex; align-items: center;">
             <span style=" color: #0ea0ff; font-weight: 600; font-size: 1rem">←</span>
             <small style="color: #0ea0ff;font-weight: 600">Voltar</small>
           </article>
@@ -171,81 +147,88 @@
             <span style="text-align: center; padding: 6px; border-radius: 50%; background-color: #0ea0ff;width: 2rem; color: #f6f8fb">2</span>
             <span style="text-align: center; padding: 6px; border-radius: 50%; background-color: #0ea0ff;width: 2rem; color: #f6f8fb">3</span>
           </article>
-          <article class="arowRight arrow" style="display: flex; align-items: center;">
-            <small style="color: #0ea0ff;font-weight: 600">Avançar</small>
+          <article class="arowRight arrow" style="display: flex; align-items: center; cursor:pointer;">
+            <small style="color: #0ea0ff;font-weight: 600; ">Avançar</small>
             <span style="color: #0ea0ff;font-weight: 600; font-size: 1rem">→</span>
           </article>
         </div>
 
         <!-- Solicitações -->
+        <h2 style="margin:0">Solicitações</h2>
+        <div style="color:var(--muted);font-size:13px">Análise </div>
+
         <div style="margin-top:18px" class="table-card">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
             <div style="font-weight:600">Solicitações Pendentes</div>
             <div style="color: #0ea0ff;font-weight: 600;font-size:1rem; cursor: pointer">Ver Histórico de Solicitações 🗎</div>
           </div>
           <table class="table">
-            <thead><tr><th>Disciplina</th><th>Data</th><th>Status</th><th></th></tr></thead>
             <tbody>
             <tr><td>Banco de Dados</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
             <tr><td>Inglês Técnico</td><td>28/08/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
             <tr><td>Lógica de Programação II</td><td>02/09/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
+            <tr><td>Programação Oritentada a Objetos I</td><td>28/08/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
             <tr><td>Programação Oritentada a Objetos II</td><td>28/08/2025</td><td><span style="color:#f39c12;font-weight:700">Pendente</span></td><td><button class="btn btn-outline">Detalhes</button></td></tr>
-
             </tbody>
           </table>
 
         </div>
-        
+
+        <!--
         <div class="tabela-wrapper">
-  <table class="tabela-solicitacoes">
-    <thead>
-      <tr>
-        <th>Disciplina</th>
-        <th>Data</th>
-        <th>Status</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-label="Disciplina">Banco de Dados</td>
-        <td data-label="Data">02/09/2025</td>
-        <td data-label="Status"><span class="status-pendente">Pendente</span></td>
-        <td data-label="Ações"><button class="btn-detalhes">Detalhes</button></td>
-      </tr>
-      <tr>
-        <td data-label="Disciplina">Inglês Técnico</td>
-        <td data-label="Data">28/08/2025</td>
-        <td data-label="Status"><span class="status-pendente">Pendente</span></td>
-        <td data-label="Ações"><button class="btn-detalhes">Detalhes</button></td>
-      </tr>
-      <tr>
-        <td data-label="Disciplina">Lógica de Programação II</td>
-        <td data-label="Data">02/09/2025</td>
-        <td data-label="Status"><span class="status-pendente">Pendente</span></td>
-        <td data-label="Ações"><button class="btn-detalhes">Detalhes</button></td>
-      </tr>
-      <tr>
-        <td data-label="Disciplina">Programação Orientada a Objetos II</td>
-        <td data-label="Data">28/08/2025</td>
-        <td data-label="Status"><span class="status-pendente">Pendente</span></td>
-        <td data-label="Ações"><button class="btn-detalhes">Detalhes</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-        
+          <table class="tabela-solicitacoes">
+            <thead>
+            <tr>
+              <th>Disciplina</th>
+              <th>Data</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td data-label="Disciplina">Banco de Dados</td>
+              <td data-label="Data">02/09/2025</td>
+              <td data-label="Status"><span class="status-pendente">Pendente</span></td>
+              <td data-label="Ações"><button class="btn-detalhes">Detalhes</button></td>
+            </tr>
+            <tr>
+              <td data-label="Disciplina">Inglês Técnico</td>
+              <td data-label="Data">28/08/2025</td>
+              <td data-label="Status"><span class="status-pendente">Pendente</span></td>
+              <td data-label="Ações"><button class="btn-detalhes">Detalhes</button></td>
+            </tr>
+            <tr>
+              <td data-label="Disciplina">Lógica de Programação II</td>
+              <td data-label="Data">02/09/2025</td>
+              <td data-label="Status"><span class="status-pendente">Pendente</span></td>
+              <td data-label="Ações"><button class="btn-detalhes">Detalhes</button></td>
+            </tr>
+            <tr>
+              <td data-label="Disciplina">Programação Orientada a Objetos II</td>
+              <td data-label="Data">28/08/2025</td>
+              <td data-label="Status"><span class="status-pendente">Pendente</span></td>
+              <td data-label="Ações"><button class="btn-detalhes">Detalhes</button></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        -->
+
       </div>
 
       <!-- Coluna lateral -->
       <aside class="sidebar-panel">
-        <div class="user">
+      <!--
+      <div class="user">
           <div style="text-align:right">
-            <div style="font-weight:600">Olá, Michael</div>
+            <div style="font-weight:600">Olá, Geraldo</div>
             <div style="font-size:13px;color:var(--muted)">Aluno — ADS 4º</div>
           </div>
-          <div class="avatar">M</div>
+          <div class="avatar">G</div>
         </div>
+        -->
 
         <div class="info-box">
           <div style="font-weight:600;margin-bottom:8px">Contatos</div>
@@ -255,7 +238,7 @@
           </div>
         </div>
         <div class="info-box">
-          <div style="font-weight:600;margin-bottom:8px">Dicas Rápidas</div>
+          <div style="font-weight:600;margin-bottom:8px">Aviso Importante</div>
           <div style="color:var(--muted);font-size:13px">Verifique pré-requisitos antes de solicitar. Horários com conflito são bloqueados automaticamente.</div>
         </div>
         <div class="info-box">
@@ -288,7 +271,7 @@
 <div class="modal" id="modal">
   <div class="modal-content">
     <h3>Motivo da Rejeição</h3>
-    <p>Pré-requisito não cumprido ou conflito de horário.</p>
+    <p>Pré-requisitos não cumpridos ou conflito de horário.</p>
     <button class="btn btn-outline" onclick="closeModal()">Fechar</button>
   </div>
 </div>
@@ -303,134 +286,134 @@
   function closeModal(){
     document.getElementById("modal").style.display = "none";
   }
-  
+
 </script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const allCards = Array.from(document.querySelectorAll(".cards .card"));
-  const searchInput = document.querySelector(".search input");
-  const filterSelect = document.querySelector("select");
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const allCards = Array.from(document.querySelectorAll(".cards .card"));
+    const searchInput = document.querySelector(".search input");
+    const filterSelect = document.querySelector("select");
 
-  const prevBtn = document.querySelector(".card_btns .arrowLeft");
-  const nextBtn = document.querySelector(".card_btns .arowRight");
-  const paginationContainer =
-    document.querySelector(".pagination-numbers") ||
-    document.querySelector(".card_btns article:nth-child(2)");
+    const prevBtn = document.querySelector(".card_btns .arrowLeft");
+    const nextBtn = document.querySelector(".card_btns .arowRight");
+    const paginationContainer =
+            document.querySelector(".pagination-numbers") ||
+            document.querySelector(".card_btns article:nth-child(2)");
 
-  const perPage = 3;
-  let currentPage = 1;
-  let filteredCards = [...allCards];
-  let totalPages = Math.ceil(filteredCards.length / perPage);
+    const perPage = 3;
+    let currentPage = 1;
+    let filteredCards = [...allCards];
+    let totalPages = Math.ceil(filteredCards.length / perPage);
 
-  // Container de mensagem de sugestão
-  const suggestionBox = document.createElement("div");
-  suggestionBox.style.cssText = "margin-top:10px;color:#9ca3af;font-size:14px;font-style:italic;";
-  searchInput.parentElement.appendChild(suggestionBox);
+    // Container de mensagem de sugestão
+    const suggestionBox = document.createElement("div");
+    suggestionBox.style.cssText = "margin-top:10px;color:#9ca3af;font-size:14px;font-style:italic;";
+    searchInput.parentElement.appendChild(suggestionBox);
 
-  // 🔹 Remove acentos e deixa minúsculo
-  function normalizeText(text) {
-    return text
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
-  }
+    // 🔹 Remove acentos e deixa minúsculo
+    function normalizeText(text) {
+      return text
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLowerCase();
+    }
 
-  // 🔹 Distância de Levenshtein (simplificado p/ sugestão)
-  function levenshtein(a, b) {
-    const matrix = [];
-    const lenA = a.length;
-    const lenB = b.length;
+    // 🔹 Distância de Levenshtein (simplificado p/ sugestão)
+    function levenshtein(a, b) {
+      const matrix = [];
+      const lenA = a.length;
+      const lenB = b.length;
 
-    for (let i = 0; i <= lenB; i++) matrix[i] = [i];
-    for (let j = 0; j <= lenA; j++) matrix[0][j] = j;
+      for (let i = 0; i <= lenB; i++) matrix[i] = [i];
+      for (let j = 0; j <= lenA; j++) matrix[0][j] = j;
 
-    for (let i = 1; i <= lenB; i++) {
-      for (let j = 1; j <= lenA; j++) {
-        if (b.charAt(i - 1) === a.charAt(j - 1)) {
-          matrix[i][j] = matrix[i - 1][j - 1];
-        } else {
-          matrix[i][j] = Math.min(
-            matrix[i - 1][j - 1] + 1, // substituição
-            matrix[i][j - 1] + 1,     // inserção
-            matrix[i - 1][j] + 1      // remoção
-          );
+      for (let i = 1; i <= lenB; i++) {
+        for (let j = 1; j <= lenA; j++) {
+          if (b.charAt(i - 1) === a.charAt(j - 1)) {
+            matrix[i][j] = matrix[i - 1][j - 1];
+          } else {
+            matrix[i][j] = Math.min(
+                    matrix[i - 1][j - 1] + 1, // substituição
+                    matrix[i][j - 1] + 1,     // inserção
+                    matrix[i - 1][j] + 1      // remoção
+            );
+          }
         }
       }
+      return matrix[lenB][lenA];
     }
-    return matrix[lenB][lenA];
-  }
 
-  // 🔹 Aplica filtro e busca
-  function applyFilters() {
-    const searchText = normalizeText(searchInput.value);
-    const filterValue = filterSelect.value;
+    // 🔹 Aplica filtro e busca
+    function applyFilters() {
+      const searchText = normalizeText(searchInput.value);
+      const filterValue = filterSelect.value;
 
-    filteredCards = allCards.filter((card) => {
-      const text = normalizeText(card.innerText);
+      filteredCards = allCards.filter((card) => {
+        const text = normalizeText(card.innerText);
 
-      const matchesSearch = text.includes(searchText);
+        const matchesSearch = text.includes(searchText);
 
-      let matchesFilter = true;
-      if (filterValue === "disponiveis") matchesFilter = card.classList.contains("disponivel");
-      if (filterValue === "indisponiveis") matchesFilter = card.classList.contains("indisponivel");
-      if (filterValue === "solicitados") matchesFilter = card.classList.contains("solicitada");
+        let matchesFilter = true;
+        if (filterValue === "disponiveis") matchesFilter = card.classList.contains("disponivel");
+        if (filterValue === "indisponiveis") matchesFilter = card.classList.contains("indisponivel");
+        if (filterValue === "solicitados") matchesFilter = card.classList.contains("solicitada");
 
-      return matchesSearch && matchesFilter;
-    });
+        return matchesSearch && matchesFilter;
+      });
 
-    // Sugestão caso não encontre nada
-    if (filteredCards.length === 0 && searchText.length > 0) {
-      let bestMatch = null;
-      let bestDistance = Infinity;
+      // Sugestão caso não encontre nada
+      if (filteredCards.length === 0 && searchText.length > 0) {
+        let bestMatch = null;
+        let bestDistance = Infinity;
 
-      allCards.forEach((card) => {
-        const text = normalizeText(card.querySelector(".title").innerText);
-        const dist = levenshtein(searchText, text);
-        if (dist < bestDistance) {
-          bestDistance = dist;
-          bestMatch = text;
+        allCards.forEach((card) => {
+          const text = normalizeText(card.querySelector(".title").innerText);
+          const dist = levenshtein(searchText, text);
+          if (dist < bestDistance) {
+            bestDistance = dist;
+            bestMatch = text;
+          }
+        });
+
+        suggestionBox.textContent =
+                bestDistance <= 5
+                        ? `Nenhum resultado. Você quis dizer: "${bestMatch}"?`
+                        : "Nenhum resultado encontrado.";
+      } else {
+        suggestionBox.textContent = "";
+      }
+
+      totalPages = Math.max(1, Math.ceil(filteredCards.length / perPage));
+      currentPage = 1;
+      showPage(currentPage);
+    }
+
+    // 🔹 Mostra os cards da página atual
+    function showPage(page) {
+      currentPage = page;
+
+      allCards.forEach((card) => (card.style.display = "none"));
+
+      filteredCards.forEach((card, index) => {
+        if (index >= (page - 1) * perPage && index < page * perPage) {
+          card.style.display = "";
         }
       });
 
-      suggestionBox.textContent =
-        bestDistance <= 5
-          ? `Nenhum resultado. Você quis dizer: "${bestMatch}"?`
-          : "Nenhum resultado encontrado.";
-    } else {
-      suggestionBox.textContent = "";
+      updatePagination();
+      updateArrows();
     }
 
-    totalPages = Math.max(1, Math.ceil(filteredCards.length / perPage));
-    currentPage = 1;
-    showPage(currentPage);
-  }
+    // 🔹 Atualiza os números da paginação
+    function updatePagination() {
+      if (!paginationContainer) return;
+      paginationContainer.innerHTML = "";
 
-  // 🔹 Mostra os cards da página atual
-  function showPage(page) {
-    currentPage = page;
-
-    allCards.forEach((card) => (card.style.display = "none"));
-
-    filteredCards.forEach((card, index) => {
-      if (index >= (page - 1) * perPage && index < page * perPage) {
-        card.style.display = "";
-      }
-    });
-
-    updatePagination();
-    updateArrows();
-  }
-
-  // 🔹 Atualiza os números da paginação
-  function updatePagination() {
-    if (!paginationContainer) return;
-    paginationContainer.innerHTML = "";
-
-    for (let i = 1; i <= totalPages; i++) {
-      const span = document.createElement("span");
-      span.textContent = i;
-      span.className = "page-number";
-      span.style.cssText = `
+      for (let i = 1; i <= totalPages; i++) {
+        const span = document.createElement("span");
+        span.textContent = i;
+        span.className = "page-number";
+        span.style.cssText = `
         display:inline-flex;
         align-items:center;
         justify-content:center;
@@ -444,39 +427,39 @@ document.addEventListener("DOMContentLoaded", () => {
         font-weight:600;
         user-select:none;
       `;
-      if (i === currentPage) {
-        span.style.backgroundColor = "#0ea0ff";
-        span.style.color = "#fff";
-      } else {
-        span.style.backgroundColor = "#e5e7eb";
-        span.style.color = "#0ea0ff";
+        if (i === currentPage) {
+          span.style.backgroundColor = "#0ea0ff";
+          span.style.color = "#fff";
+        } else {
+          span.style.backgroundColor = "#e5e7eb";
+          span.style.color = "#0ea0ff";
+        }
+        span.addEventListener("click", () => showPage(i));
+        paginationContainer.appendChild(span);
       }
-      span.addEventListener("click", () => showPage(i));
-      paginationContainer.appendChild(span);
     }
-  }
 
-  // 🔹 Atualiza as setas
-  function updateArrows() {
-    if (prevBtn) {
-      prevBtn.style.opacity = currentPage <= 1 ? "0.4" : "";
-      prevBtn.style.pointerEvents = currentPage <= 1 ? "none" : "";
+    // 🔹 Atualiza as setas
+    function updateArrows() {
+      if (prevBtn) {
+        prevBtn.style.opacity = currentPage <= 1 ? "0.4" : "";
+        prevBtn.style.pointerEvents = currentPage <= 1 ? "none" : "";
+      }
+      if (nextBtn) {
+        nextBtn.style.opacity = currentPage >= totalPages ? "0.4" : "";
+        nextBtn.style.pointerEvents = currentPage >= totalPages ? "none" : "";
+      }
     }
-    if (nextBtn) {
-      nextBtn.style.opacity = currentPage >= totalPages ? "0.4" : "";
-      nextBtn.style.pointerEvents = currentPage >= totalPages ? "none" : "";
-    }
-  }
 
-  // 🔹 Eventos
-  if (prevBtn) prevBtn.addEventListener("click", () => currentPage > 1 && showPage(currentPage - 1));
-  if (nextBtn) nextBtn.addEventListener("click", () => currentPage < totalPages && showPage(currentPage + 1));
-  if (searchInput) searchInput.addEventListener("input", applyFilters);
-  if (filterSelect) filterSelect.addEventListener("change", applyFilters);
+    // 🔹 Eventos
+    if (prevBtn) prevBtn.addEventListener("click", () => currentPage > 1 && showPage(currentPage - 1));
+    if (nextBtn) nextBtn.addEventListener("click", () => currentPage < totalPages && showPage(currentPage + 1));
+    if (searchInput) searchInput.addEventListener("input", applyFilters);
+    if (filterSelect) filterSelect.addEventListener("change", applyFilters);
 
-  // Inicializa
-  applyFilters();
-});
+    // Inicializa
+    applyFilters();
+  });
 </script>
 </body>
 </html>
